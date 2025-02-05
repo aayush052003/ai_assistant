@@ -1,4 +1,5 @@
 import 'package:ai_assistant/screens/home_screen.dart';
+import 'package:ai_assistant/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     });
@@ -22,26 +23,22 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text("Welcome to AI Assistant",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.indigo)),
-          SizedBox(
-            height: size.height*0.03,
-          ),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Image.asset("assets/images/chatbot_logo.png",
-                  width: size.width * 0.6),
-            ),
-          ),
-        ],
-      )),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: size.height,
+          child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Welcome to AI Assistant",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Color.fromARGB(255, 49, 132, 162))),
+              SizedBox(
+                height: size.height*0.04,
+              ),
+              CustomLoading(),
+            ],
+          )),
+        ),
+      ),
     );
   }
 }
